@@ -1,0 +1,193 @@
+﻿@using Online_Quiz_System.Common
+@{
+   
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        @ViewBag.Title
+    </title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Assets/css/normalize.css">
+    <link rel="stylesheet" href="~/Assets/css/style.min.css">
+    <link rel="stylesheet" href="~/Assets/css/font-awesome.css">
+    <link rel="stylesheet" href="~/Assets/css/materialize.min.css">
+    <link href="~/Assets/LandingPage/lib/flaticon/font/flaticon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Assets/DataTables/css/jquery.dataTables.css">
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Assets/js/materialize.min.js"></script>
+    <script src="~/Assets/DataTables/js/jquery.dataTables.js"></script>
+
+    <style>
+        .nav-item1 {
+            color: #00394f;
+            padding: 30px 15px;
+            cursor: pointer;
+            font-family: "Nunito", sans-serif;
+            font-weight: 700 !important;
+        }
+
+            .nav-item1:hover {
+                color: #17a2b8;
+            }
+
+        footer {
+            color: white;
+            background-color: #00394f;
+            font-family: "Handlee", cursive;
+        }
+
+        #footer_test {
+            display: flex;
+            padding: 50px 0;
+        }
+
+        #footer_row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .text-pri {
+            color: #17a2b8;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .text-white {
+            color: white;
+        }
+    </style>
+</head>
+
+<header style="width: 100%; height: 80px; background-color: #fefcfc; display: flex">
+    <div style="margin: auto 8px">
+        <a href="/Home/Index" >
+            <img src="~/Assets/LandingPage/img/logo2.jpg" height="80px" style="margin-left: 20px" alt="Alternate Text" />
+        </a>
+    </div>   
+    <div class="navbar-nav" style="; margin: auto auto " >
+        <a href="/Home/Index" class="nav-item1"> Trang chủ</a>
+        <a href="/Home/About" class="nav-item1"> Thông tin </a>
+        <a href="/Student/Index" class="nav-item1"> Đề thi </a> 
+        <a href="/Student/DeLT_Student" class="nav-item1"> Ôn luyện </a> 
+        <a href="/Student/ThongKeHT" class="nav-item1"> Thống kê </a> 
+        @*<div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Tổng hợp </a>
+            <div class="dropdown-menu rounded-0 m-0">
+                <a href="blog.html" class="dropdown-item"> Tổng kết học tập </a>
+                <a href="single.html" class="dropdown-item"> Tổng hợp kết quả thi </a>
+                <a href="single.html" class="dropdown-item"> Tổng hợp đề luyện tập </a>
+            </div>
+        </div>*@
+        <a href="/Home/LienHe" class="nav-item1"> Liên hệ </a>
+    </div>   
+    <div class="navbar-nav1" style="margin: auto 50px">
+        @{ if (@Session[UserSession.NAME] == null)
+            {
+                <a href="/Login/Index" class="btn btn-primary px-4"> Đăng nhập &#10152;</a>
+                    }
+                                else
+                                {
+                                    {
+                                        int role = (int)Session[UserSession.PERMISSION];
+                                        if (role == 1)
+                                        {
+                    <span class="title_test">Xin chào: @Session[UserSession.NAME] </span>
+                                            <a href="/Admin/Logout" class="btn btn-dangxuat"> <i class="fa fa-power-off"></i>  Đăng Xuất  </a> }
+                                        else
+                                                                if (role == 2)
+                                        {
+                    <span class="title" style="color: black; margin: 10px 30px">Xin chào: @Session[UserSession.NAME] </span>
+                                            <a href="/Teacher/Logout" class="btn btn-dangxuat"> <i class="fa fa-power-off"></i>  Đăng Xuất  </a> }
+                                        else
+                                                                if (role == 3)
+                                        {
+                    <span class="title" style="color: black; margin: 10px 30px">Xin chào: @Session[UserSession.NAME] </span>
+                                            <a href="/Student/Logout" class="btn btn-dangxuat"> <i class="fa fa-power-off"></i>  Đăng Xuất  </a> }
+                                    }
+                                } }
+    </div>
+
+</header>
+
+<body class="body-login scrollbar">
+
+        @RenderBody()
+   
+</body>
+
+<footer>
+    <!-- Footer Start -->
+    <div class="container-fluid bg-secondary text-white mt-5 py-5 px-sm-3 px-md-5" id="footer_test">
+        <div class="row pt-5" id="footer_row">
+            <div class="col-lg-3 col-md-6 mb-5" style="flex: 0 0 25%; max-width: 250%; margin-left: 150px">
+                <h3 class="text-pri mb-4"> The Champions </h3>
+                <p style="display: block; font-style:normal;line-height: 45px ">
+                    Labore dolor amet ipsum ea, erat sit ipsum duo eos. Volup amet ea
+                    dolor et magna dolor, elitr rebum duo est sed diam elitr. Stet elitr
+                    stet diam duo eos rebum ipsum diam ipsum elitr.
+                </p>
+                <div class="d-flex justify-content-start mt-4">
+                    <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                       style="width: 38px; height: 38px"
+                       href="#">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                       style="width: 38px; height: 38px"
+                       href="#">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                       style="width: 38px; height: 38px"
+                       href="#">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                       style="width: 38px; height: 38px"
+                       href="#">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5" style="flex: 0 0 35%; max-width: 35%; margin-left: 50px" >
+                <h3 class="text-pri mb-4"> Thông tin </h3>
+                <div class="d-flex" style="display: flex">
+                    <div class="pl-3">
+                        <h5 class="text-white">   &#10148;  Địa chỉ</h5>
+                        <p>140 Lê Trọng Tấn, Tây Thạnh, Tân Phú, TP. Hồ Chí Minh.</p>
+                    </div>
+                </div>
+
+                <div class="d-flex" style="display: flex">
+                   
+                    <div class="pl-3">
+                        <h5 class="text-white"> &#10148;  Số điện thoại</h5>
+                        <p> 028 6270 6275 </p>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-lg-3 col-md-6 mb-5" style="flex: 0 0 30%; max-width: 30%; margin-left: -50px">
+                <h3 class="text-pri mb-4"> Địa chỉ </h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2837.2341379255636!2d106.62625410881847!3d10.806920289299232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752be27ea41e05%3A0xfa77697a39f13ab0!2zMTQwIMSQLiBMw6ogVHLhu41uZyBU4bqlbiwgVMOieSBUaOG6oW5oLCBUw6JuIFBow7osIEjhu5MgQ2jDrSBNaW5oIDcwMDAwMCwgVmnhu4d0IE5hbQ!5e1!3m2!1svi!2s!4v1733369428535!5m2!1svi!2s"
+                        width="350" height="180" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        
+    </div>
+    <!-- Footer End -->
+
+</footer>
+
+</html>

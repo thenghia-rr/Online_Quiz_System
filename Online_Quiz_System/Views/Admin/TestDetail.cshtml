@@ -1,0 +1,71 @@
+﻿@using Online_Quiz_System.Models
+@{
+    ViewBag.Title = "Chi Tiết Đề Thi có MÃ ĐỀ: " + ViewBag.test_code ;
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var List = Model as List<question>;
+    var stt = 0;
+}
+
+<div class="title-content">
+    <a class="title" href="@Url.Action("TestManager")">Quay Lại</a>
+    <span class="title">@ViewBag.Title</span>
+</div>
+<div class="content s12">
+        <table class="striped centered" id="questions-table" >
+            <thead>
+                <tr>
+                    <th> STT </th>
+                    <th> Nội Dung Câu Hỏi</th>
+                    <th> Đáp án A </th>
+                    <th> Đáp án B </th>
+                    <th> Đáp án C </th>
+                    <th> Đáp án D </th>
+                    <th> Đáp án đúng </th>
+                    <th> </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in List)
+                {
+                    stt = stt + 1;
+                    <tr>
+                        <td> @stt  </td>
+                        <td style="text-align: left">
+                            @item.content
+                            @if (!item.img_content.Equals("noimage.png"))
+                            {
+                                <br /><img src="../Assets/img_questions/@item.img_content" style="max-width: 150px; max-height: 150px" />
+                               
+                            }
+                        </td>
+                        <td> @item.answer_a</td>
+                        <td> @item.answer_b</td>
+                        <td> @item.answer_c</td>
+                        <td> @item.answer_d</td>
+                        <td style="color: green"> @item.correct_answer </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+</div>
+<script>
+    $('#questions-table').DataTable({
+        "language": {
+            "lengthMenu": "Hiển thị _MENU_",
+            "zeroRecords": "Không tìm thấy",
+            "info": "Hiển thị trang _PAGE_/_PAGES_",
+            "infoEmpty": "Không có dữ liệu",
+            "emptyTable": "Không có dữ liệu",
+            "infoFiltered": "(tìm kiếm trong tất cả _MAX_ mục)",
+            "sSearch": "Tìm kiếm",
+            "paginate": {
+                "first": "Đầu",
+                "last": "Cuối",
+                "next": "Sau",
+                "previous": "Trước"
+            }
+        }
+    });
+    $('select').select();
+</script>

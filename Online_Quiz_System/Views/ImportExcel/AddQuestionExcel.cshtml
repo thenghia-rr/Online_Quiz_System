@@ -1,0 +1,98 @@
+﻿@using Online_Quiz_System.Models
+@{
+    ViewBag.Title = "Thêm câu hỏi từ file Excel";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var ListGrade = ViewBag.ListGrade;
+    var ListSubject = ViewBag.ListSubject;
+}
+<div class="title-content">
+    <span class="title">@ViewBag.Title</span>
+
+</div>
+<div style="margin-left: 20px; ">
+    <h5>
+        <i class="fa fa-bullhorn" aria-hidden="true"></i>
+        Lưu ý :
+    </h5>
+    <div style="width: 98%; background-color: antiquewhite; padding:10px 20px; margin-bottom: 20px">
+        <p> •  Vui lòng tải file mẫu mới nhất về và thao tác để đảm bảo kết quả chính xác. </p>
+        <p> •  Các định dạng file hỗ trợ là xlsx và xls . </p>
+        <p> •  Vui lòng không thay đổi tiêu đề, và thứ tự các cột trong file mẫu. </p>
+        <p> •  Các trường tiêu đề có (*) là các trường bắt buộc điền </p>
+    </div>
+
+    <table>
+
+    </table>
+
+    <div style="width: 800px; border: 1px solid #808080; padding: 0 20px; margin-left: 200px;  border-radius: 15px">
+
+        @{using (Html.BeginForm("AddQuestionExcel", "ImportExcel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+            {
+                <table width="650px">
+                    <tr>
+                        <td> Chọn Khối học (*) </td>
+                        <td>
+                            <select name="id_grade" id="id_grade" style="display: block"; required >
+                                <option disabled selected>Chọn Khối Học </option>
+                                @foreach (var item2 in ListGrade)
+                                {
+                                    <option value="@item2.id_grade">@item2.grade_name </option>}
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td> Chọn Môn Học (*) </td>
+                        <td>   
+                            <select name="id_subject" style="display: block"; required>
+                                
+                                @foreach (var subject in ListSubject)
+                                {
+                                    <option value="@subject.id_subject">@subject.subject_name</option>}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Nhập chương số (*) </td>
+                        <td>
+                            <div class="input-field">
+                                <input style="width: 80px; padding: 0px" id="number" type="number" name="number" value="1">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="250px">  Chọn File Excel:
+                        <td>
+                            <input type="file" style="" name="excelfile" id="excelfile" required />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="" style="height: 40px; border-radius: 10px">
+                                <a href="https://bom.so/PUHm9W">
+                                    <i class="fa fa-file-excel" aria-hidden="true"></i> Tải xuống file mẫu
+                                </a>
+                            </button>
+                            <br />
+
+                        </td>
+                        <td>  @Html.Raw(ViewBag.Error) </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button class="btn btn-primary" type="submit" style="margin-left: 30%">
+                                Import File
+                            </button>
+
+                        </td>
+                    </tr>
+                </table>
+
+            }
+        }
+
+    </div>
+
+</div>

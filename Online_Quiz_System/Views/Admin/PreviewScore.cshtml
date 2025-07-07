@@ -1,0 +1,62 @@
+﻿@using Online_Quiz_System.Models
+@{
+    ViewBag.Title = "Danh Sách Điểm Sinh Viên của Bài Thi Mã đề: " + ViewBag.test_code + " (" + ViewBag.total + ")";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var List = Model as List<ScoreViewModel>;
+    
+    int stt = 0;
+}
+
+<div class="title-content">
+    <a class="title" href="#" onclick="window.history.back()  ">Quay Lại</a>
+    <span class="title">@ViewBag.Title</span>
+</div>
+
+<div class="content">
+    
+    <table class="striped centered" id="list-score">
+            <thead>
+                <tr>
+                    <th> STT </th>
+                    <th>Tài Khoản</th>
+                    <th>Tên sinh viên</th>
+                    <th>Điểm Thi </th>
+                    <th> Số câu trả lời đúng </th>
+                    <th> Thời gian nộp bài </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in List)
+                {  stt = stt + 1;
+                <tr>
+                    <td> @stt  </td>
+                    <td>@student.student.username</td>
+                    <td>@student.student.name</td>
+                    <td>@student.score.score_number</td>
+                    <td>@student.score.detail</td>
+                    <td>@student.score.time_finish</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+</div>
+<script>
+    $('#list-score').DataTable({
+        "language": {
+            "lengthMenu": "Hiển thị _MENU_",
+            "zeroRecords": "Không tìm thấy bản ghi nào",
+            "info": "Hiển thị trang _PAGE_/_PAGES_",
+            "infoEmpty": "Không tìm thấy kết quả thi đang tìm kiếm",
+            "emptyTable": "Không có dữ liệu về kết quả thi",
+            "infoFiltered": "(tìm kiếm trong tất cả _MAX_ mục)",
+            "sSearch": "Tìm kiếm",
+            "paginate": {
+                "first": "Đầu",
+                "last": "Cuối",
+                "next": "Sau",
+                "previous": "Trước"
+            }
+        }
+    });
+    $('select').select();
+</script>

@@ -1,0 +1,65 @@
+﻿@using Online_Quiz_System.Common
+@{ 
+    ViewBag.Title = " Có lỗi truy cập";
+    ViewBag.name = "Hệ Thống Thi Trắc Nghiệm Online";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @* Landing Page *@
+    <link href="Assets/LandingPage/img/favicon.ico" rel="icon" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Nunito&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+    <link href="~/Assets/LandingPage/lib/flaticon/font/flaticon.css" rel="stylesheet" />
+    <link href="~/Assets/LandingPage/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Assets/LandingPage/lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
+    <link href="~/Assets/LandingPage/css/style.css" rel="stylesheet" />
+    <style>
+        .col-middle {
+            vertical-align: middle;
+        }
+
+        .col-middle {
+            float: none;
+            margin-top: 10%;
+            margin-left: 50px;
+            padding-left: 100px;
+        }
+
+        .robo_body {
+            animation: float 4s ease-in-out infinite;
+            z-index: 30;
+            margin-top: 40px;
+        }
+    </style>
+
+</head>
+
+<body class="body-login">
+    <div class="">
+        <div class="page-container page-container-responsive">
+            <div class="row space-top-8 space-8 row-table">
+                <div class="col-lg-5 text-right col-middle">
+                    <h1>THÔNG BÁO!</h1>
+                    <span class="failed" style="color:red; text-align: center">Lỗi: Bạn không có quyền truy cập trang này. 
+                    <br />
+                    Vui lòng kiểm tra lại. </span>
+                    <br />
+                    <a href="#" class="btn btn-danger" style="margin-top: 20px; margin-right: 90px; background: #17a2b8" onclick="window.history.back()">Quay Lại</a>
+                </div>
+                <div class="col-lg-5 text-left robo_figure">
+                    <img class="robo_body" src="~/Assets/LandingPage/img/404_1.png"  width="500px"  alt="Girl has dropped her ice cream.">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
